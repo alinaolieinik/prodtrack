@@ -53,4 +53,12 @@ public class User {
     public void setMachine(Machine machine) {
         this.machine = machine;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 }
