@@ -18,7 +18,7 @@ public class Machine {
 
     public Machine() {}
 
-    public Machine(String name, MachineState status) {
+    public Machine(String name, MachineState state) {
         this.name = name;
         this.state = state;
         this.lastUpdate = LocalDateTime.now();
