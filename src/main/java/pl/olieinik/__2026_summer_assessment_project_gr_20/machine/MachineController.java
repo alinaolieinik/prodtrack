@@ -1,9 +1,6 @@
 package pl.olieinik.__2026_summer_assessment_project_gr_20.machine;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,5 +22,12 @@ public class MachineController {
     @GetMapping
     public List<Machine> getAll() {
         return service.getAllMachines();
+    }
+
+    // to remove
+    @PatchMapping("/{id}/state")
+    public void changeState(@PathVariable Long id,
+                            @RequestParam MachineState state) {
+        service.changeState(id, state);
     }
 }
