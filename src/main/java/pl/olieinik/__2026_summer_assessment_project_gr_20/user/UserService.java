@@ -18,13 +18,13 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    // GET BY ID
+
     public User getUser(Long id) {
         return userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("User not found: " + id));
     }
 
-    // CREATE USER
+
     public User createUser(User user) {
 
         validateUser(user);
@@ -32,7 +32,7 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    // UPDATE USER
+
     public User updateUser(Long id, User updated) {
 
         User existing = getUser(id);
@@ -47,7 +47,6 @@ public class UserService {
         return userRepository.save(existing);
     }
 
-    // DELETE USER
     public void deleteUser(Long id) {
         if (!userRepository.existsById(id)) {
             throw new RuntimeException("User not found: " + id);
@@ -55,7 +54,6 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
-    // ASSIGN MACHINE TO OPERATOR
     public User assignMachine(Long userId, Machine machine) {
 
         User user = getUser(userId);
@@ -69,7 +67,6 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    // BUSINESS VALIDATION
     private void validateUser(User user) {
 
         if (user.getRole() == null) {
