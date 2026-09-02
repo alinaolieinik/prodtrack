@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface ProductionNormRepository extends JpaRepository<ProductionNorm, Long> {
 
-    Optional<ProductionNorm> findByValidToIsNull();
+    Optional<ProductionNorm> findByProductIdAndValidToIsNull(Long productId);
 
-    List<ProductionNorm> findAllByOrderByValidFromDesc();
+    List<ProductionNorm> findAllByProductIdOrderByValidFromDesc(Long productId);
 }

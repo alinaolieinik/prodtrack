@@ -3,26 +3,67 @@ import type { OperatorDashboard as OperatorDashboardType } from "../types/Operat
 import Announcements from "./Announcements";
 import "../App.css";
 
-function OperatorDashboard() {
+// function OperatorDashboard() {
+
+interface OperatorDashboardProps {
+    operatorId: number;
+    onLogout: () => void;
+
+}
+
+function OperatorDashboard({ operatorId, onLogout }: OperatorDashboardProps) {
     const [dashboard, setDashboard] =
         useState<OperatorDashboardType | null>(null);
 
+    // useEffect(() => {
+    //     fetch(`http://localhost:8080/api/dashboard/operator/${operatorId}`)
+    //         .then((response) => {
+    //             if (!response.ok) {
+    //                 throw new Error("Nie udało się pobrać danych");
+    //             }
+    //
+    //             return response.json();
+    //         })
+    //         .then((data: OperatorDashboardType) => {
+    //             setDashboard(data);
+    //         })
+    //         .catch((error) => {
+    //             console.error(error);
+    //         });
+    // }, [operatorId]);
+
     useEffect(() => {
-        fetch("http://localhost:8080/api/dashboard/operator/1")
-            .then((response) => {
+        let isActive = true;
+
+        async function loadDashboard() {
+            try {
+                const response = await fetch(
+                    `http://localhost:8080/api/dashboard/operator/${operatorId}`
+                );
+
                 if (!response.ok) {
-                    throw new Error("Nie udało się pobrać danych");
+                    throw new Error("Nie udało się pobrać danych dashboardu");
                 }
 
-                return response.json();
-            })
-            .then((data: OperatorDashboardType) => {
-                setDashboard(data);
-            })
-            .catch((error) => {
+                const data: OperatorDashboardType = await response.json();
+
+                if (isActive) {
+                    setDashboard(data);
+                }
+            } catch (error) {
                 console.error(error);
-            });
-    }, []);
+            }
+        }
+
+        loadDashboard();
+
+        const intervalId = window.setInterval(loadDashboard, 1000);
+
+        return () => {
+            isActive = false;
+            window.clearInterval(intervalId);
+        };
+    }, [operatorId]);
 
     if (!dashboard) {
         return <div className="loading">Ładowanie...</div>;
@@ -34,8 +75,15 @@ function OperatorDashboard() {
             {/* HEADER */}
             <header className="header">
                 <div className="navigation">
-                    <div className="home-icon">⌂</div>
-                    <div className="back-icon">←</div>
+                    <button
+                        type="button"
+                        className="home-icon"
+                        onClick={onLogout}
+                        title="Wyloguj się"
+                        aria-label="Wyloguj się"
+                    >
+                        ⌂
+                    </button>                    {/*<div className="back-icon">←</div>*/}
                 </div>
 
                 <h1>PANEL OPERATORA</h1>

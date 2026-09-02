@@ -1,0 +1,126 @@
+/*.machines-tab {*/
+/*    width: min(100% - 36px, 1040px);*/
+/*    margin: 0 auto 20px;*/
+/*    padding: 24px;*/
+
+/*    border: 3px solid #000;*/
+/*    border-radius: 18px;*/
+/*    background: #fff;*/
+/*    text-align: left;*/
+/*}*/
+
+/*.machines-tab h2 {*/
+/*    margin: 0 0 18px;*/
+/*    padding-bottom: 8px;*/
+/*    border-bottom: 3px solid #000;*/
+/*    font-size: 27px;*/
+/*}*/
+
+/*.machines-table {*/
+/*    width: 100%;*/
+/*    border-collapse: collapse;*/
+/*    font-size: 16px;*/
+/*}*/
+
+/*.machines-table th,*/
+/*.machines-table td {*/
+/*    padding: 13px 12px;*/
+/*    border-bottom: 2px solid #000;*/
+/*    text-align: left;*/
+/*}*/
+
+/*.machines-table th {*/
+/*    background: #000;*/
+/*    color: #fff;*/
+/*}*/
+
+/*.machines-table tbody tr:nth-child(even) {*/
+/*    background: #eee;*/
+/*}*/
+
+/*.machines-table tbody tr:hover {*/
+/*    background: #ffdc5a;*/
+/*}*/
+
+/*@media (max-width: 800px) {*/
+/*    .machines-tab {*/
+/*        width: calc(100% - 20px);*/
+/*        padding: 16px;*/
+/*        overflow-x: auto;*/
+/*    }*/
+/*}*/
+
+
+.machines-tab {
+    max-width: 90%;
+    margin: 16px auto 0;
+    padding: 10px 4px 0;
+
+    text-align: left;
+}
+
+.machines-tab h2 {
+    margin: 0 0 12px;
+    color: #000;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.machines-table {
+    width: 100%;
+    overflow: hidden;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 14px;
+
+    font-size: 16px;
+}
+
+.machines-table th,
+.machines-table td {
+    padding: 14px 16px;
+    text-align: left;
+}
+
+.machines-table th {
+    background: #171717;
+    color: #fff;
+    font-weight: 700;
+}
+
+.machines-table th:first-child {
+    border-radius: 14px 0 0 0;
+}
+
+.machines-table th:last-child {
+    border-radius: 0 14px 0 0;
+}
+
+.machines-table td {
+    border-bottom: 2px solid #fff;
+    background: #ededed;
+    color: #000;
+}
+
+.machines-table tbody tr:last-child td:first-child {
+    border-radius: 0 0 0 14px;
+}
+
+.machines-table tbody tr:last-child td:last-child {
+    border-radius: 0 0 14px 0;
+}
+
+.machines-table tbody tr:hover td {
+    background: #d8f2f7;
+}
+
+@media (max-width: 800px) {
+    .machines-tab {
+        max-width: 100%;
+        overflow-x: auto;
+    }
+
+    .machines-table {
+        min-width: 620px;
+    }
+}

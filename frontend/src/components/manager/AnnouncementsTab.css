@@ -1,0 +1,183 @@
+/*.announcements-tab {*/
+/*    width: min(100% - 36px, 1040px);*/
+/*    margin: 0 auto 20px;*/
+/*    padding: 24px;*/
+
+/*    border: 3px solid #000;*/
+/*    border-radius: 18px;*/
+/*    background: #fff;*/
+/*    text-align: left;*/
+/*}*/
+
+/*.announcements-tab h2 {*/
+/*    margin: 0 0 18px;*/
+/*    padding-bottom: 8px;*/
+/*    border-bottom: 3px solid #000;*/
+/*    font-size: 27px;*/
+/*}*/
+
+/*.announcements-tab h2:not(:first-child) {*/
+/*    margin-top: 32px;*/
+/*}*/
+
+/*.announcement-form {*/
+/*    display: grid;*/
+/*    gap: 14px;*/
+/*}*/
+
+/*.announcement-form input,*/
+/*.announcement-form textarea {*/
+/*    width: 100%;*/
+/*    padding: 12px;*/
+/*    border: 2px solid #000;*/
+/*    border-radius: 9px;*/
+/*    font: inherit;*/
+/*}*/
+
+/*.announcement-form textarea {*/
+/*    min-height: 120px;*/
+/*    resize: vertical;*/
+/*}*/
+
+/*.announcement-form button {*/
+/*    justify-self: start;*/
+/*    padding: 10px 16px;*/
+
+/*    border: 3px solid #000;*/
+/*    border-radius: 10px;*/
+/*    background: #38acf0;*/
+/*    cursor: pointer;*/
+/*    font-weight: bold;*/
+/*}*/
+
+/*.announcement-form button:hover {*/
+/*    background: #079ab4;*/
+/*    color: #fff;*/
+/*}*/
+
+/*.manager-announcement-card {*/
+/*    margin-top: 12px;*/
+/*    padding: 16px;*/
+/*    border-left: 8px solid #079ab4;*/
+/*    background: #e5e5e5;*/
+/*}*/
+
+/*.manager-announcement-card h3 {*/
+/*    margin: 0 0 8px;*/
+/*}*/
+
+/*.manager-announcement-card small {*/
+/*    display: block;*/
+/*    margin-top: 12px;*/
+/*}*/
+
+/*@media (max-width: 800px) {*/
+/*    .announcements-tab {*/
+/*        width: calc(100% - 20px);*/
+/*        padding: 16px;*/
+/*    }*/
+/*}*/
+
+.announcements-tab {
+    max-width: 90%;
+    margin: 16px auto 0;
+    padding: 10px 4px 0;
+
+    text-align: left;
+}
+
+.announcements-tab h2 {
+    margin: 26px 0 12px;
+    color: #000;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.announcements-tab h2:first-child {
+    margin-top: 0;
+}
+
+.announcement-form {
+    display: grid;
+    gap: 12px;
+
+    padding: 20px;
+    border-radius: 18px;
+    background: #eeeeee;
+}
+
+.announcement-form input,
+.announcement-form textarea {
+    width: 100%;
+    padding: 12px 14px;
+
+    border: none;
+    border-radius: 14px;
+    outline: 2px solid transparent;
+
+    background: #fff;
+    color: #000;
+    font: inherit;
+}
+
+.announcement-form input:focus,
+.announcement-form textarea:focus {
+    outline-color: #38acf0;
+}
+
+.announcement-form textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.announcement-form button {
+    justify-self: center;
+
+    min-width: 160px;
+    padding: 11px 20px;
+
+    border: none;
+    border-radius: 20px;
+
+    background: #079ab4;
+    color: #fff;
+    cursor: pointer;
+
+    font: inherit;
+    font-weight: 700;
+}
+
+.announcement-form button:hover {
+    background: #057e93;
+}
+
+.manager-announcement-card {
+    margin-top: 10px;
+    padding: 16px 18px;
+
+    border-radius: 14px;
+    border-left: 8px solid #38acf0;
+
+    background: #e5e5e5;
+    color: #000;
+}
+
+.manager-announcement-card:nth-of-type(even) {
+    border-left-color: #00bf63;
+}
+
+.manager-announcement-card h3 {
+    margin: 0 0 7px;
+    font-size: 19px;
+}
+
+.manager-announcement-card p {
+    margin: 0;
+    line-height: 1.45;
+}
+
+.manager-announcement-card small {
+    display: block;
+    margin-top: 12px;
+    color: #555;
+}

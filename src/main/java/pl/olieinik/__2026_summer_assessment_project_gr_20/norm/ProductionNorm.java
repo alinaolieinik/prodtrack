@@ -1,6 +1,7 @@
 package pl.olieinik.__2026_summer_assessment_project_gr_20.norm;
 import jakarta.persistence.*;
 import pl.olieinik.__2026_summer_assessment_project_gr_20.machine.Machine;
+import pl.olieinik.__2026_summer_assessment_project_gr_20.product.Product;
 import pl.olieinik.__2026_summer_assessment_project_gr_20.user.User;
 
 import java.time.LocalDateTime;
@@ -24,6 +25,25 @@ public class ProductionNorm {
     private LocalDateTime validFrom;
 
     private LocalDateTime validTo;
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public Integer getExceedTargetPerShift() {
         return exceedTargetPerShift;
