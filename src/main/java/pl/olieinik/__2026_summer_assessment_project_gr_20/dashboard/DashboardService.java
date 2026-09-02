@@ -35,27 +35,62 @@ public class DashboardService {
     public OperatorDashboardDto getDashboard(Long operatorId) {
 
         User operator = userService.getUser(operatorId);
+        if (operator.getMachine() == null) {
+            throw new IllegalStateException(
+                    "Operator nie ma przypisanej maszyny."
+            );
+        }
 
+        if (operator.getProduct() == null) {
+            throw new IllegalStateException(
+                    "Operator nie ma przypisanego produktu."
+            );
+        }
         MachineProductionData productionData =
                 productionService.getByMachineId(
                         operator.getMachine().getId()
                 );
 
-        ProductionNorm norm =
-                normService.getCurrentNorm();
+//        if (operator.getProduct() == null) {
+//            throw new RuntimeException("Operator nie ma przypisanego produktu");
+//        }
 
-        long elapsedSeconds =
-                Duration.between(
-                        productionData.getLastPackageTime(),
-                        LocalDateTime.now()
-                ).getSeconds();
+        ProductionNorm norm = normService.getCurrentNorm(
+                operator.getProduct().getId()
+        );
 
-        long remainingSeconds =
-                Math.max(
-                        0,
-                        norm.getSecondsPerPackage().longValue()
-                                - elapsedSeconds
-                );
+        if (norm == null) {
+            throw new RuntimeException("Produkt nie ma przypisanych norm.");
+        }
+
+//        long elapsedSeconds =
+//                Duration.between(
+//                        productionData.getLastPackageTime(),
+//                        LocalDateTime.now()
+//                ).getSeconds();
+
+//        long remainingSeconds =
+//                Math.max(
+//                        0,
+//                        norm.getSecondsPerPackage().longValue()
+//                                - elapsedSeconds
+//                );
+
+        long remainingSeconds;
+
+        if (productionData.getLastPackageTime() == null) {
+            remainingSeconds = Math.round(norm.getSecondsPerPackage());
+        } else {
+            long elapsedSeconds = Duration.between(
+                    productionData.getLastPackageTime(),
+                    LocalDateTime.now()
+            ).getSeconds();
+
+            remainingSeconds = Math.max(
+                    0,
+                    Math.round(norm.getSecondsPerPackage()) - elapsedSeconds
+            );
+        }
 
         OperatorDashboardDto dto =
                 new OperatorDashboardDto();

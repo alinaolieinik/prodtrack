@@ -1,0 +1,259 @@
+/*.norms-tab {*/
+/*    width: min(100% - 36px, 1040px);*/
+/*    margin: 0 auto 20px;*/
+/*    padding: 24px;*/
+
+/*    border: 3px solid #000;*/
+/*    border-radius: 18px;*/
+/*    background: #fff;*/
+/*    text-align: left;*/
+/*}*/
+
+/*.norms-tab h2 {*/
+/*    margin: 0 0 18px;*/
+/*    padding-bottom: 8px;*/
+/*    border-bottom: 3px solid #000;*/
+/*    font-size: 27px;*/
+/*}*/
+
+/*.norms-tab h2:not(:first-child) {*/
+/*    margin-top: 32px;*/
+/*}*/
+
+/*.norms-tab > p {*/
+/*    margin: 8px 0;*/
+/*    font-size: 17px;*/
+/*}*/
+
+/*.norm-form {*/
+/*    display: grid;*/
+/*    grid-template-columns: repeat(2, 1fr);*/
+/*    gap: 14px;*/
+/*}*/
+
+/*.norm-form input {*/
+/*    width: 100%;*/
+/*    padding: 12px;*/
+/*    border: 2px solid #000;*/
+/*    border-radius: 9px;*/
+/*    font: inherit;*/
+/*}*/
+
+/*.norm-form button {*/
+/*    grid-column: 1 / -1;*/
+/*    justify-self: start;*/
+/*    padding: 10px 16px;*/
+
+/*    border: 3px solid #000;*/
+/*    border-radius: 10px;*/
+/*    background: #38acf0;*/
+/*    color: #000;*/
+/*    cursor: pointer;*/
+/*    font-weight: bold;*/
+/*}*/
+
+/*.norm-form button:hover {*/
+/*    background: #079ab4;*/
+/*    color: #fff;*/
+/*}*/
+
+/*.norm-history {*/
+/*    margin: 0;*/
+/*    padding-left: 22px;*/
+/*}*/
+
+/*.norm-history li {*/
+/*    padding: 10px 0;*/
+/*    border-bottom: 1px solid #999;*/
+/*}*/
+
+/*@media (max-width: 800px) {*/
+/*    .norms-tab {*/
+/*        width: calc(100% - 20px);*/
+/*        padding: 16px;*/
+/*    }*/
+
+/*    .norm-form {*/
+/*        grid-template-columns: 1fr;*/
+/*    }*/
+
+/*    .norm-form button {*/
+/*        grid-column: auto;*/
+/*    }*/
+/*}*/
+
+.norms-tab {
+    max-width: 90%;
+    margin: 16px auto 0;
+    padding: 10px 4px 0;
+
+    text-align: left;
+}
+
+.norms-tab h2 {
+    margin: 26px 0 12px;
+    color: #000;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.norms-tab h2:first-child {
+    margin-top: 0;
+}
+
+.norms-tab > .product-selector-message {
+    display: block;
+    min-height: 0;
+    margin: 0 0 10px;
+    padding: 0;
+    border-radius: 0;
+    background: transparent;
+    color: #333;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.product-selector-label {
+    display: block;
+    margin-bottom: 7px;
+    color: #000;
+    font-weight: 700;
+}
+
+.product-selector-input {
+    display: block;
+    width: min(100%, 460px);
+    min-height: 46px;
+    margin-bottom: 18px;
+    padding: 10px 14px;
+    border: none;
+    border-radius: 14px;
+    outline: 2px solid transparent;
+    background: #eeeeee;
+    color: #000;
+    font: inherit;
+}
+
+.product-selector-input:focus {
+    outline-color: #38acf0;
+}
+
+.norms-tab > p {
+    display: inline-flex;
+    align-items: center;
+
+    min-height: 58px;
+    margin: 0 10px 10px 0;
+    padding: 10px 18px;
+
+    border-radius: 20px;
+    background: #e2e2e2;
+    color: #000;
+
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.norms-tab > p:nth-of-type(1) {
+    background: #ffe482;
+}
+
+.norms-tab > p:nth-of-type(2) {
+    background: #9de5c0;
+}
+
+.norms-tab > p:nth-of-type(3) {
+    background: #ffc0c2;
+}
+
+.norms-tab > p:nth-of-type(4) {
+    background: #bdeef8;
+}
+
+.norm-form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+
+    padding: 20px;
+    border-radius: 18px;
+    background: #eeeeee;
+}
+
+.norm-form input {
+    width: 100%;
+    min-height: 46px;
+    padding: 10px 14px;
+
+    border: none;
+    border-radius: 14px;
+    outline: 2px solid transparent;
+
+    background: #fff;
+    color: #000;
+    font: inherit;
+}
+
+.norm-form input:focus {
+    outline-color: #38acf0;
+}
+
+.norm-form button {
+    grid-column: 1 / -1;
+    justify-self: center;
+
+    min-width: 180px;
+    padding: 11px 20px;
+
+    border: none;
+    border-radius: 20px;
+
+    background: #079ab4;
+    color: #fff;
+    cursor: pointer;
+
+    font: inherit;
+    font-weight: 700;
+}
+
+.norm-form button:hover {
+    background: #057e93;
+}
+
+.norm-history {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+
+    list-style: none;
+    border-radius: 14px;
+}
+
+.norm-history li {
+    padding: 14px 18px;
+    border-bottom: 2px solid #fff;
+    background: #e5e5e5;
+    color: #000;
+}
+
+.norm-history li:nth-child(even) {
+    background: #dcdcdc;
+}
+
+.norm-history li:last-child {
+    border-bottom: 0;
+}
+
+@media (max-width: 800px) {
+    .norms-tab {
+        max-width: 100%;
+    }
+
+    .norm-form {
+        grid-template-columns: 1fr;
+    }
+
+    .norm-form button {
+        grid-column: auto;
+    }
+}
