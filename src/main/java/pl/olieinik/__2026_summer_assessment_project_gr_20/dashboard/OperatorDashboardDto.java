@@ -14,6 +14,8 @@ public class OperatorDashboardDto {
 
     private String machineName;
 
+    private String productName;
+
     private Integer packedCount;
 
     private Integer targetPerShift;
@@ -61,6 +63,14 @@ public class OperatorDashboardDto {
 
     public void setMachineName(String machineName) {
         this.machineName = machineName;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
     public Integer getPackedCount() {

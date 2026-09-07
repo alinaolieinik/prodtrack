@@ -13,6 +13,7 @@ export interface OperatorDashboard {
     name: string;
     surname: string;
     machineName: string;
+    productName: string;
     packedCount: number;
     targetPerShift: number;
     exceedTargetPerShift: number;

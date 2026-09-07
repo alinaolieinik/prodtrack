@@ -1,71 +1,3 @@
-// import {useState} from "react";
-// import OperatorDashboard from "./OperatorDashboard.tsx";
-//
-// function ManagerDashboard() {
-//     const [activeTab, setActiveTab] = useState("users");
-//
-//     return (
-//         <main className="dashboard">
-//             <header className="header">
-//                 <div className="navigation">
-//                     <div className="home-icon">⌂</div>
-//                     <div className="back-icon">←</div>
-//                 </div>
-//
-//                 <h1>PANEL MANAGERA</h1>
-//
-//                 <div className="logo">
-//                     Lukas
-//                 </div>
-//             </header>
-//
-//             <nav className="manager-tabs">
-//                 <button
-//                     className={activeTab === "users" ? "active" : ""}
-//                     onClick={() => setActiveTab("users")}
-//                 >
-//                     UŻYTKOWNICY
-//                 </button>
-//
-//                 <button
-//                     className={activeTab === "standards" ? "active" : ""}
-//                     onClick={() => setActiveTab("standards")}
-//                 >
-//                     NORMY
-//                 </button>
-//
-//                 <button
-//                     className={activeTab === "products" ? "active" : ""}
-//                     onClick={() => setActiveTab("products")}
-//                 >
-//                     PRODUKTY
-//                 </button>
-//
-//                 <button
-//                     className={activeTab === "announcements" ? "active" : ""}
-//                     onClick={() => setActiveTab("announcements")}
-//                 >
-//                     OGŁOSZENIA
-//                 </button>
-//             </nav>
-//
-//             {/*<section className="manager-content">*/}
-//
-//             {/*    {activeTab === "users" && <UsersTab />}*/}
-//
-//             {/*    {activeTab === "standards" && <StandardsTab />}*/}
-//
-//             {/*    {activeTab === "products" && <ProductsTab />}*/}
-//
-//             {/*    {activeTab === "announcements" && <AnnouncementsTab />}*/}
-//
-//             {/*</section>*/}
-//         </main>
-//     );
-// }
-//
-// export default ManagerDashboard;
-
 import {useCallback, useEffect, useState} from "react";
 import type {ManagerDashboard as ManagerDashboardData} from "../types/ManagerDashboard";
 import UsersTab from "./manager/UsersTab.tsx";
@@ -74,6 +6,7 @@ import AnnouncementsTab from "./manager/AnnouncementsTab.tsx";
 import "../App.css";
 import "./ManagerDashboard.css";
 import MachinesTab from "./manager/MachinesTab.tsx";
+import ProductsTab from "./manager/ProductsTab.tsx";
 
 interface ManagerDashboardProps {
     managerId: number;
@@ -167,7 +100,7 @@ function ManagerDashboard({managerId, onLogout}: ManagerDashboardProps) {
             </header>
 
             <section className="manager-summary">
-                <p>Operatorzy: {dashboard.summary.operatorsCount}</p>
+                {/*<p>Operatorzy: {dashboard.summary.operatorsCount}</p>*/}
                 <p>Maszyny pracujące: {dashboard.summary.workingMachinesCount}</p>
                 <p>Awarie: {dashboard.summary.failedMachinesCount}</p>
                 <p>Aktywne ogłoszenia: {dashboard.summary.activeAnnouncementsCount}</p>
@@ -196,6 +129,12 @@ function ManagerDashboard({managerId, onLogout}: ManagerDashboardProps) {
                 >
                     Maszyny
                 </button>
+                <button
+                    className={activeTab === "products" ? "active" : ""}
+                    onClick={() => setActiveTab("products")}
+                >
+                    Produkty
+                </button>
             </nav>
 
             {activeTab === "users" && (
@@ -211,6 +150,7 @@ function ManagerDashboard({managerId, onLogout}: ManagerDashboardProps) {
             {activeTab === "machines" && (
                 <MachinesTab machines={dashboard.machines}/>
             )}
+            {activeTab === "products" && <ProductsTab />}
         </main>
     );
 }
