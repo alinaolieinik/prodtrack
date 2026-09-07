@@ -103,6 +103,10 @@ public class DashboardService {
                 operator.getMachine().getName()
         );
 
+        dto.setProductName(
+                operator.getProduct().getName()
+        );
+
         dto.setPackedCount(
                 productionData.getPackedCount()
         );

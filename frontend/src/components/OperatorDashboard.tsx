@@ -178,10 +178,10 @@ function OperatorDashboard({ operatorId, onLogout }: OperatorDashboardProps) {
                     </div>
 
                     <div className="info-row">
-                        <span>Symbol produktu:</span>
+                        <span>Nazwa produktu:</span>
 
                         <strong>
-                            SUBITO OPAL 978
+                            {dashboard.productName}
                         </strong>
                     </div>
 
