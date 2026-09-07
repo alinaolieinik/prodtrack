@@ -74,6 +74,61 @@
     background: #ffe482;
 }
 
+.summary-operators {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.summary-operators p {
+    background: #bdeef8;
+}
+
+.operator-warning {
+    position: absolute;
+    right: -12px;
+    top: -10px;
+    display: grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #ffb703;
+    color: #000;
+    cursor: help;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.operator-warning-tooltip {
+    position: absolute;
+    z-index: 10;
+    top: calc(100% + 10px);
+    left: 50%;
+    display: none;
+    width: min(360px, 80vw);
+    padding: 14px;
+    border-radius: 14px;
+    background: #171717;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.4;
+    text-align: left;
+    transform: translateX(-50%);
+}
+
+.operator-warning:hover .operator-warning-tooltip,
+.operator-warning:focus .operator-warning-tooltip {
+    display: grid;
+    gap: 12px;
+}
+
+.operator-warning-entry {
+    display: grid;
+    gap: 4px;
+}
+
 .manager-tabs {
     display: flex;
     justify-content: center;

@@ -22,11 +22,19 @@ public record ManagerDashboardDto(
 
     public record SummaryDto(
             long operatorsCount,
+            long activeOperatorsCount,
             long machinesCount,
             long workingMachinesCount,
             long waitingMachinesCount,
             long failedMachinesCount,
-            long activeAnnouncementsCount
+            long activeAnnouncementsCount,
+            List<UnattendedMachineDto> unattendedMachines
+    ) {}
+
+    public record UnattendedMachineDto(
+            Long machineId,
+            String machineName,
+            List<String> productDescriptions
     ) {}
 
     public record UserDto(

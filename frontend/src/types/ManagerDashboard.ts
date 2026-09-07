@@ -6,11 +6,13 @@ export interface ManagerDashboard {
     };
     summary: {
         operatorsCount: number;
+        activeOperatorsCount: number;
         machinesCount: number;
         workingMachinesCount: number;
         waitingMachinesCount: number;
         failedMachinesCount: number;
         activeAnnouncementsCount: number;
+        unattendedMachines: UnattendedMachine[];
     };
     users: ManagerUser[];
     machines: ManagerMachine[];
@@ -53,4 +55,10 @@ export interface Announcement {
     createdAt: string;
     validFrom: string;
     validTo: string | null;
+}
+
+export interface UnattendedMachine {
+    machineId: number;
+    machineName: string;
+    productDescriptions: string[];
 }
