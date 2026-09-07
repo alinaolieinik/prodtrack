@@ -30,4 +30,12 @@ public class MachineProductionDataService {
 
         return repository.save(data);
     }
+
+    @Transactional
+    public void resetPackedCount(Long machineId) {
+        MachineProductionData data = getByMachineId(machineId);
+        data.setPackedCount(0);
+        data.setLastPackageTime(null);
+        repository.save(data);
+    }
 }

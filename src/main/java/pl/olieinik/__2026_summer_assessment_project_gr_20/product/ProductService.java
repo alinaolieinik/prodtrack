@@ -3,6 +3,7 @@ package pl.olieinik.__2026_summer_assessment_project_gr_20.product;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+import pl.olieinik.__2026_summer_assessment_project_gr_20.employeeWorkHistory.EmployeeWorkHistoryRepository;
 import pl.olieinik.__2026_summer_assessment_project_gr_20.norm.ProductionNormRepository;
 import pl.olieinik.__2026_summer_assessment_project_gr_20.user.UserRepository;
 
@@ -14,15 +15,18 @@ public class ProductService {
     private final ProductRepository repository;
     private final UserRepository userRepository;
     private final ProductionNormRepository normRepository;
+    private final EmployeeWorkHistoryRepository workHistoryRepository;
 
     public ProductService(
             ProductRepository repository,
             UserRepository userRepository,
-            ProductionNormRepository normRepository
+            ProductionNormRepository normRepository,
+            EmployeeWorkHistoryRepository workHistoryRepository
     ) {
         this.repository = repository;
         this.userRepository = userRepository;
         this.normRepository = normRepository;
+        this.workHistoryRepository = workHistoryRepository;
     }
 
     public List<Product> getAll() {
@@ -55,7 +59,8 @@ public class ProductService {
         Product product = getById(id);
 
         if (userRepository.existsByProduct_Id(id)
-                || normRepository.existsByProduct_Id(id)) {
+                || normRepository.existsByProduct_Id(id)
+                || workHistoryRepository.existsByProduct_Id(id)) {
             throw new ResponseStatusException(
                     HttpStatus.BAD_REQUEST,
                     "Nie można usunąć produktu, ponieważ jest przypisany do użytkowników lub norm."

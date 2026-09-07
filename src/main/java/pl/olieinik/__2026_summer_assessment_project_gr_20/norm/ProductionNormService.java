@@ -5,6 +5,7 @@ import pl.olieinik.__2026_summer_assessment_project_gr_20.product.ProductService
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductionNormService {
@@ -46,10 +47,14 @@ public class ProductionNormService {
 
 
     public ProductionNorm getCurrentNorm(Long productId) {
-        return repository.findByProductIdAndValidToIsNull(productId)
+        return findCurrentNorm(productId)
                 .orElseThrow(() -> new RuntimeException(
                         "Brak aktywnej normy dla wybranego produktu"
                 ));
+    }
+
+    public Optional<ProductionNorm> findCurrentNorm(Long productId) {
+        return repository.findByProductIdAndValidToIsNull(productId);
     }
 
     public List<ProductionNorm> getHistory(Long productId) {

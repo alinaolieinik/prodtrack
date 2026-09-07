@@ -31,4 +31,14 @@ public class AuthController {
         return authService.getLoginUsers();
     }
 
+    @PostMapping("/logout")
+    public ResponseEntity<?> logout(@RequestBody LogoutRequest request) {
+        try {
+            authService.logout(request.userId());
+            return ResponseEntity.noContent().build();
+        } catch (RuntimeException exception) {
+            return ResponseEntity.badRequest().body(exception.getMessage());
+        }
+    }
+
 }
