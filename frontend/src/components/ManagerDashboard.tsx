@@ -100,7 +100,25 @@ function ManagerDashboard({managerId, onLogout}: ManagerDashboardProps) {
             </header>
 
             <section className="manager-summary">
-                {/*<p>Operatorzy: {dashboard.summary.operatorsCount}</p>*/}
+                <div className="summary-operators">
+                    <p>Operatorzy pracujący: {dashboard.summary.activeOperatorsCount}</p>
+
+                    {dashboard.summary.unattendedMachines.length > 0 && (
+                        <span className="operator-warning" tabIndex={0} aria-label="Ostrzeżenie o braku zalogowanego operatora">
+                            ⚠
+                            <span className="operator-warning-tooltip" role="tooltip">
+                                {dashboard.summary.unattendedMachines.map((machine) => (
+                                    <span className="operator-warning-entry" key={machine.machineId}>
+                                        <strong>
+                                            {machine.machineName} — {machine.productDescriptions.join(", ")}
+                                        </strong>
+                                        Maszyna {machine.machineName} jest uruchomiona, ale żaden operator przypisany do tej maszyny nie jest zalogowany.
+                                    </span>
+                                ))}
+                            </span>
+                        </span>
+                    )}
+                </div>
                 <p>Maszyny pracujące: {dashboard.summary.workingMachinesCount}</p>
                 <p>Awarie: {dashboard.summary.failedMachinesCount}</p>
                 <p>Aktywne ogłoszenia: {dashboard.summary.activeAnnouncementsCount}</p>
@@ -145,7 +163,7 @@ function ManagerDashboard({managerId, onLogout}: ManagerDashboardProps) {
             )}
 
             {activeTab === "announcements" && (
-                <AnnouncementsTab announcements={dashboard.announcements} onRefresh={loadDashboard}/>
+                <AnnouncementsTab managerId={managerId} onRefresh={loadDashboard}/>
             )}
             {activeTab === "machines" && (
                 <MachinesTab machines={dashboard.machines}/>

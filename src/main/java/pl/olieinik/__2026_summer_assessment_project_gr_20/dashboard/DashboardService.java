@@ -1,6 +1,7 @@
 package pl.olieinik.__2026_summer_assessment_project_gr_20.dashboard;
 
 import org.springframework.stereotype.Service;
+import pl.olieinik.__2026_summer_assessment_project_gr_20.announcement.Announcement;
 import pl.olieinik.__2026_summer_assessment_project_gr_20.announcement.AnnouncementService;
 import pl.olieinik.__2026_summer_assessment_project_gr_20.machineProductionData.MachineProductionData;
 import pl.olieinik.__2026_summer_assessment_project_gr_20.machineProductionData.MachineProductionDataService;
@@ -132,9 +133,22 @@ public class DashboardService {
         );
 
         dto.setAnnouncements(
-                announcementService.getActiveAnnouncements()
+                announcementService.getActiveAnnouncements().stream()
+                        .map(this::mapOperatorAnnouncement)
+                        .toList()
         );
 
         return dto;
+    }
+
+    private OperatorAnnouncementDto mapOperatorAnnouncement(Announcement announcement) {
+        return new OperatorAnnouncementDto(
+                announcement.getId(),
+                announcement.getTitle(),
+                announcement.getMessage(),
+                announcement.getCreatedBy().getName()
+                        + " " + announcement.getCreatedBy().getSurname(),
+                announcement.getValidTo()
+        );
     }
 }

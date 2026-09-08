@@ -6,6 +6,7 @@ import pl.olieinik.__2026_summer_assessment_project_gr_20.announcement.Announcem
 import pl.olieinik.__2026_summer_assessment_project_gr_20.machine.Machine;
 import pl.olieinik.__2026_summer_assessment_project_gr_20.machine.MachineService;
 import pl.olieinik.__2026_summer_assessment_project_gr_20.machine.MachineState;
+import pl.olieinik.__2026_summer_assessment_project_gr_20.loginHistory.UserLoginHistoryRepository;
 import pl.olieinik.__2026_summer_assessment_project_gr_20.norm.ProductionNorm;
 import pl.olieinik.__2026_summer_assessment_project_gr_20.norm.ProductionNormService;
 import pl.olieinik.__2026_summer_assessment_project_gr_20.user.User;
@@ -13,6 +14,7 @@ import pl.olieinik.__2026_summer_assessment_project_gr_20.user.UserRole;
 import pl.olieinik.__2026_summer_assessment_project_gr_20.user.UserService;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class ManagerDashboardService {
@@ -20,15 +22,18 @@ public class ManagerDashboardService {
     private final UserService userService;
     private final MachineService machineService;
     private final AnnouncementService announcementService;
+    private final UserLoginHistoryRepository loginHistoryRepository;
 
     public ManagerDashboardService(
             UserService userService,
             MachineService machineService,
-            AnnouncementService announcementService
+            AnnouncementService announcementService,
+            UserLoginHistoryRepository loginHistoryRepository
     ) {
         this.userService = userService;
         this.machineService = machineService;
         this.announcementService = announcementService;
+        this.loginHistoryRepository = loginHistoryRepository;
     }
 
     public pl.olieinik.__2026_summer_assessment_project_gr_20.manager.ManagerDashboardDto getDashboard(Long managerId) {
@@ -45,11 +50,19 @@ public class ManagerDashboardService {
         List<Announcement> announcements =
                 announcementService.getActiveAnnouncements();
 
+        List<ManagerDashboardDto.UnattendedMachineDto> unattendedMachines =
+                machines.stream()
+                        .filter(machine -> machine.getState() == MachineState.WORKING)
+                        .map(machine -> mapUnattendedMachine(machine, users))
+                        .filter(Objects::nonNull)
+                        .toList();
+
         ManagerDashboardDto.SummaryDto summary =
                 new ManagerDashboardDto.SummaryDto(
                         users.stream()
                                 .filter(user -> user.getRole() == UserRole.OPERATOR)
                                 .count(),
+                        loginHistoryRepository.countActiveUsersByRole(UserRole.OPERATOR),
                         machines.size(),
                         machines.stream()
                                 .filter(machine ->
@@ -63,7 +76,8 @@ public class ManagerDashboardService {
                                 .filter(machine ->
                                         machine.getState() == MachineState.FAILURE)
                                 .count(),
-                        announcements.size()
+                        announcements.size(),
+                        unattendedMachines
                 );
 
         return new ManagerDashboardDto(
@@ -82,6 +96,42 @@ public class ManagerDashboardService {
                 announcements.stream()
                         .map(this::mapAnnouncement)
                         .toList()
+        );
+    }
+
+    private ManagerDashboardDto.UnattendedMachineDto mapUnattendedMachine(
+            Machine machine,
+            List<User> users
+    ) {
+        List<User> assignedOperators = users.stream()
+                .filter(user -> user.getRole() == UserRole.OPERATOR)
+                .filter(user -> user.getMachine() != null)
+                .filter(user -> Objects.equals(user.getMachine().getId(), machine.getId()))
+                .filter(user -> user.getProduct() != null)
+                .toList();
+
+        if (assignedOperators.isEmpty()) {
+            return null;
+        }
+
+        boolean hasLoggedInOperator = assignedOperators.stream()
+                .anyMatch(user -> loginHistoryRepository
+                        .existsByUser_IdAndLogoutAtIsNull(user.getId()));
+
+        if (hasLoggedInOperator) {
+            return null;
+        }
+
+        List<String> productDescriptions = assignedOperators.stream()
+                .map(user -> user.getProduct().getCode()
+                        + " — " + user.getProduct().getName())
+                .distinct()
+                .toList();
+
+        return new ManagerDashboardDto.UnattendedMachineDto(
+                machine.getId(),
+                machine.getName(),
+                productDescriptions
         );
     }
 
@@ -176,7 +226,8 @@ private ManagerDashboardDto.UserDto mapUser(User user) {
                 announcement.getId(),
                 announcement.getTitle(),
                 announcement.getMessage(),
-                announcement.getCreatedBy(),
+                announcement.getCreatedBy().getName()
+                        + " " + announcement.getCreatedBy().getSurname(),
                 announcement.getCreatedAt(),
                 announcement.getValidFrom(),
                 announcement.getValidTo()

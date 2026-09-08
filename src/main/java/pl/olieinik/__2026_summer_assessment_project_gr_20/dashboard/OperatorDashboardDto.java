@@ -1,7 +1,5 @@
 package pl.olieinik.__2026_summer_assessment_project_gr_20.dashboard;
 
-import pl.olieinik.__2026_summer_assessment_project_gr_20.announcement.Announcement;
-
 import java.util.List;
 
 public class OperatorDashboardDto {
@@ -28,7 +26,7 @@ public class OperatorDashboardDto {
 
     private Long remainingSeconds;
 
-    private List<Announcement> announcements;
+    private List<OperatorAnnouncementDto> announcements;
 
     public OperatorDashboardDto() {
     }
@@ -121,11 +119,11 @@ public class OperatorDashboardDto {
         this.remainingSeconds = remainingSeconds;
     }
 
-    public List<Announcement> getAnnouncements() {
+    public List<OperatorAnnouncementDto> getAnnouncements() {
         return announcements;
     }
 
-    public void setAnnouncements(List<Announcement> announcements) {
+    public void setAnnouncements(List<OperatorAnnouncementDto> announcements) {
         this.announcements = announcements;
     }
 }

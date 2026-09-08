@@ -1,6 +1,7 @@
 package pl.olieinik.__2026_summer_assessment_project_gr_20.announcement;
 
 import jakarta.persistence.*;
+import pl.olieinik.__2026_summer_assessment_project_gr_20.user.User;
 
 import java.time.LocalDateTime;
 
@@ -18,7 +19,9 @@ public class Announcement {
 
     private LocalDateTime createdAt;
 
-    private String createdBy;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "created_by", nullable = false)
+    private User createdBy;
 
     private LocalDateTime validFrom;
 
@@ -65,11 +68,11 @@ public class Announcement {
         return createdAt;
     }
 
-    public String getCreatedBy() {
+    public User getCreatedBy() {
         return createdBy;
     }
 
-    public void setCreatedBy(String createdBy) {
+    public void setCreatedBy(User createdBy) {
         this.createdBy = createdBy;
     }
 

@@ -160,11 +160,6 @@ function Announcements({ announcements }: AnnouncementsProps) {
                                             {announcement.title}
                                         </strong>
 
-                                        <small>
-                                            {formatDate(
-                                                announcement.createdAt
-                                            )}
-                                        </small>
                                     </span>
 
                                     <span className="announcement-arrow">
@@ -184,6 +179,8 @@ function Announcements({ announcements }: AnnouncementsProps) {
 
                                         <div className="announcement-meta">
                                             Autor: {announcement.createdBy}
+                                            <br />
+                                            Ważne do: {formatDate(announcement.validTo)}
                                         </div>
                                     </div>
                                 </div>
@@ -197,7 +194,11 @@ function Announcements({ announcements }: AnnouncementsProps) {
     );
 }
 
-function formatDate(dateString: string): string {
+function formatDate(dateString: string | null): string {
+    if (!dateString) {
+        return "bezterminowo";
+    }
+
     const date = new Date(dateString);
 
     if (Number.isNaN(date.getTime())) {
