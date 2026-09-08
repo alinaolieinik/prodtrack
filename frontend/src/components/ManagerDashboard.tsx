@@ -163,7 +163,7 @@ function ManagerDashboard({managerId, onLogout}: ManagerDashboardProps) {
             )}
 
             {activeTab === "announcements" && (
-                <AnnouncementsTab announcements={dashboard.announcements} onRefresh={loadDashboard}/>
+                <AnnouncementsTab managerId={managerId} onRefresh={loadDashboard}/>
             )}
             {activeTab === "machines" && (
                 <MachinesTab machines={dashboard.machines}/>

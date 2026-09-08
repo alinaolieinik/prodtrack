@@ -226,7 +226,8 @@ private ManagerDashboardDto.UserDto mapUser(User user) {
                 announcement.getId(),
                 announcement.getTitle(),
                 announcement.getMessage(),
-                announcement.getCreatedBy(),
+                announcement.getCreatedBy().getName()
+                        + " " + announcement.getCreatedBy().getSurname(),
                 announcement.getCreatedAt(),
                 announcement.getValidFrom(),
                 announcement.getValidTo()
