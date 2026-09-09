@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: pl.olieinik.__2026_summer_assessment_project_gr_20.ApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 19.54 s -- in pl.olieinik.__2026_summer_assessment_project_gr_20.ApplicationTests
