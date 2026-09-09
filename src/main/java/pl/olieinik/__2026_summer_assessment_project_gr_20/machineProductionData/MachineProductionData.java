@@ -19,15 +19,12 @@ public class MachineProductionData {
     @Id
     @Column(name = "machine_id")
     private Long machineId;
-
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @MapsId
     @JoinColumn(name = "machine_id", nullable = false)
     private Machine machine;
-
     @Column(name = "packed_count")
     private Integer packedCount;
-
     @Column(name = "last_package_time")
     private LocalDateTime lastPackageTime;
 

@@ -333,8 +333,33 @@ function NormsTab() {
                     <ul className="norm-history">
                         {history.map((norm) => (
                             <li key={norm.id}>
-                                {norm.targetPerShift} szt. — od{" "}
-                                {new Date(norm.validFrom).toLocaleString("pl-PL")}
+                                <div className="norm-history-heading">
+                                    <strong>
+                                        Norma od {new Date(norm.validFrom).toLocaleString("pl-PL")}
+                                    </strong>
+                                    {currentNorm?.id === norm.id && (
+                                        <span>Aktywna</span>
+                                    )}
+                                </div>
+
+                                <dl className="norm-history-values">
+                                    <div className="history-value-excellent">
+                                        <dt>Świetnie</dt>
+                                        <dd>{norm.exceedTargetPerShift} szt.</dd>
+                                    </div>
+                                    <div className="history-value-target">
+                                        <dt>Norma</dt>
+                                        <dd>{norm.targetPerShift} szt.</dd>
+                                    </div>
+                                    <div className="history-value-minimum">
+                                        <dt>Do poprawy</dt>
+                                        <dd>{norm.minimumPerShift} szt.</dd>
+                                    </div>
+                                    <div className="history-value-time">
+                                        <dt>Czas na opakowanie</dt>
+                                        <dd>{norm.secondsPerPackage} s</dd>
+                                    </div>
+                                </dl>
                             </li>
                         ))}
                     </ul>

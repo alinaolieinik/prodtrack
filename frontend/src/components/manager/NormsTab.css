@@ -230,7 +230,7 @@
 }
 
 .norm-history li {
-    padding: 14px 18px;
+    padding: 18px;
     border-bottom: 2px solid #fff;
     background: #e5e5e5;
     color: #000;
@@ -244,6 +244,68 @@
     border-bottom: 0;
 }
 
+.norm-history-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 13px;
+}
+
+.norm-history-heading strong {
+    font-size: 16px;
+}
+
+.norm-history-heading span {
+    padding: 5px 10px;
+    border-radius: 999px;
+    background: #000;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.norm-history-values {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+    margin: 0;
+}
+
+.norm-history-values > div {
+    min-width: 0;
+    padding: 11px 13px;
+    border-radius: 13px;
+}
+
+.norm-history-values dt {
+    margin-bottom: 4px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.norm-history-values dd {
+    margin: 0;
+    font-size: 17px;
+    font-weight: 800;
+}
+
+.history-value-excellent {
+    background: #9de5c0;
+}
+
+.history-value-target {
+    background: #ffe482;
+}
+
+.history-value-minimum {
+    background: #ffc0c2;
+}
+
+.history-value-time {
+    background: #bdeef8;
+}
+
 @media (max-width: 800px) {
     .norms-tab {
         max-width: 100%;
@@ -255,5 +317,19 @@
 
     .norm-form button {
         grid-column: auto;
+    }
+
+    .norm-history-values {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 480px) {
+    .norm-history-heading {
+        align-items: flex-start;
+    }
+
+    .norm-history-values {
+        grid-template-columns: 1fr;
     }
 }
