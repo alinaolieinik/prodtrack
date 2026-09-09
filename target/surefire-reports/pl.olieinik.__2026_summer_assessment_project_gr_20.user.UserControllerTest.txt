@@ -1,0 +1,28 @@
+-------------------------------------------------------------------------------
+Test set: pl.olieinik.__2026_summer_assessment_project_gr_20.user.UserControllerTest
+-------------------------------------------------------------------------------
+Tests run: 4, Failures: 3, Errors: 0, Skipped: 0, Time elapsed: 6.298 s <<< FAILURE! -- in pl.olieinik.__2026_summer_assessment_project_gr_20.user.UserControllerTest
+pl.olieinik.__2026_summer_assessment_project_gr_20.user.UserControllerTest.create -- Time elapsed: 0.395 s <<< FAILURE!
+java.lang.AssertionError: Status expected:<200> but was:<400>
+	at org.springframework.test.util.AssertionErrors.fail(AssertionErrors.java:62)
+	at org.springframework.test.util.AssertionErrors.assertEquals(AssertionErrors.java:129)
+	at org.springframework.test.web.servlet.result.StatusResultMatchers.lambda$matcher$0(StatusResultMatchers.java:600)
+	at org.springframework.test.web.servlet.MockMvc$1.andExpect(MockMvc.java:212)
+	at pl.olieinik.__2026_summer_assessment_project_gr_20.user.UserControllerTest.create(UserControllerTest.java:49)
+
+pl.olieinik.__2026_summer_assessment_project_gr_20.user.UserControllerTest.update -- Time elapsed: 0.035 s <<< FAILURE!
+java.lang.AssertionError: Status expected:<200> but was:<404>
+	at org.springframework.test.util.AssertionErrors.fail(AssertionErrors.java:62)
+	at org.springframework.test.util.AssertionErrors.assertEquals(AssertionErrors.java:129)
+	at org.springframework.test.web.servlet.result.StatusResultMatchers.lambda$matcher$0(StatusResultMatchers.java:600)
+	at org.springframework.test.web.servlet.MockMvc$1.andExpect(MockMvc.java:212)
+	at pl.olieinik.__2026_summer_assessment_project_gr_20.user.UserControllerTest.update(UserControllerTest.java:69)
+
+pl.olieinik.__2026_summer_assessment_project_gr_20.user.UserControllerTest.getById -- Time elapsed: 0.030 s <<< FAILURE!
+java.lang.AssertionError: Status expected:<200> but was:<404>
+	at org.springframework.test.util.AssertionErrors.fail(AssertionErrors.java:62)
+	at org.springframework.test.util.AssertionErrors.assertEquals(AssertionErrors.java:129)
+	at org.springframework.test.web.servlet.result.StatusResultMatchers.lambda$matcher$0(StatusResultMatchers.java:600)
+	at org.springframework.test.web.servlet.MockMvc$1.andExpect(MockMvc.java:212)
+	at pl.olieinik.__2026_summer_assessment_project_gr_20.user.UserControllerTest.getById(UserControllerTest.java:30)
+
