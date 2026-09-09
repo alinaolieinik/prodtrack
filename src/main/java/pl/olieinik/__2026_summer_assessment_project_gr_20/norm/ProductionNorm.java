@@ -13,17 +13,11 @@ public class ProductionNorm {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private Integer targetPerShift;
-
     private Integer exceedTargetPerShift;
-
     private Integer minimumPerShift;
-
     private Double secondsPerPackage;
-
     private LocalDateTime validFrom;
-
     private LocalDateTime validTo;
     @ManyToOne
     @JoinColumn(name = "product_id")

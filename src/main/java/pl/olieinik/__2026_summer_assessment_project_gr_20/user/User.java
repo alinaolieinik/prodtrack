@@ -12,7 +12,6 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
     private String surname;
 
@@ -23,7 +22,7 @@ public class User {
     @Enumerated(EnumType.STRING)
     private UserRole role;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "machine_id")
     private Machine machine;
 

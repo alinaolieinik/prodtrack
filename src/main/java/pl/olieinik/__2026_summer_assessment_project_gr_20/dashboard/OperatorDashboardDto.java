@@ -1,5 +1,6 @@
 package pl.olieinik.__2026_summer_assessment_project_gr_20.dashboard;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class OperatorDashboardDto {
@@ -13,6 +14,8 @@ public class OperatorDashboardDto {
     private String machineName;
 
     private String productName;
+
+    private LocalDateTime loginAt;
 
     private Integer packedCount;
 
@@ -69,6 +72,14 @@ public class OperatorDashboardDto {
 
     public void setProductName(String productName) {
         this.productName = productName;
+    }
+
+    public LocalDateTime getLoginAt() {
+        return loginAt;
+    }
+
+    public void setLoginAt(LocalDateTime loginAt) {
+        this.loginAt = loginAt;
     }
 
     public Integer getPackedCount() {
