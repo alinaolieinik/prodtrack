@@ -12,6 +12,7 @@ export interface OperatorDashboard {
     surname: string;
     machineName: string;
     productName: string;
+    loginAt: string;
     packedCount: number;
     targetPerShift: number;
     exceedTargetPerShift: number;

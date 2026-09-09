@@ -189,7 +189,7 @@ function OperatorDashboard({ operatorId, onLogout }: OperatorDashboardProps) {
                         <span>Data i godz. rozpoczęcia:</span>
 
                         <strong>
-                            01.09.2025 07:16
+                            {formatDateTime(dashboard.loginAt)}
                         </strong>
                     </div>
 
@@ -228,6 +228,22 @@ function Clock() {
     }, []);
 
     return <div>{date.toLocaleString("pl-PL")}</div>;
+}
+
+function formatDateTime(dateString: string): string {
+    const date = new Date(dateString);
+
+    if (Number.isNaN(date.getTime())) {
+        return dateString;
+    }
+
+    return new Intl.DateTimeFormat("pl-PL", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+    }).format(date);
 }
 
 export default OperatorDashboard;

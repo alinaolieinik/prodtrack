@@ -11,20 +11,14 @@ public class Announcement {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String title;
-
     @Column(length = 2000)
     private String message;
-
     private LocalDateTime createdAt;
-
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "created_by", nullable = false)
     private User createdBy;
-
     private LocalDateTime validFrom;
-
     private LocalDateTime validTo;
 
 

@@ -3,6 +3,7 @@ package pl.olieinik.__2026_summer_assessment_project_gr_20.dashboard;
 import org.springframework.stereotype.Service;
 import pl.olieinik.__2026_summer_assessment_project_gr_20.announcement.Announcement;
 import pl.olieinik.__2026_summer_assessment_project_gr_20.announcement.AnnouncementService;
+import pl.olieinik.__2026_summer_assessment_project_gr_20.loginHistory.UserLoginHistoryService;
 import pl.olieinik.__2026_summer_assessment_project_gr_20.machineProductionData.MachineProductionData;
 import pl.olieinik.__2026_summer_assessment_project_gr_20.machineProductionData.MachineProductionDataService;
 import pl.olieinik.__2026_summer_assessment_project_gr_20.norm.ProductionNorm;
@@ -20,17 +21,20 @@ public class DashboardService {
     private final ProductionNormService normService;
     private final AnnouncementService announcementService;
     private final MachineProductionDataService productionService;
+    private final UserLoginHistoryService loginHistoryService;
 
     public DashboardService(
             UserService userService,
             ProductionNormService normService,
             AnnouncementService announcementService,
-            MachineProductionDataService productionService
+            MachineProductionDataService productionService,
+            UserLoginHistoryService loginHistoryService
     ) {
         this.userService = userService;
         this.normService = normService;
         this.announcementService = announcementService;
         this.productionService = productionService;
+        this.loginHistoryService = loginHistoryService;
     }
 
     public OperatorDashboardDto getDashboard(Long operatorId) {
@@ -106,6 +110,10 @@ public class DashboardService {
 
         dto.setProductName(
                 operator.getProduct().getName()
+        );
+
+        dto.setLoginAt(
+                loginHistoryService.getCurrentSession(operator.getId()).getLoginAt()
         );
 
         dto.setPackedCount(

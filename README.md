@@ -43,7 +43,7 @@ Managers can manage users, machines, production norms, and announcements.
 ## 🧠 Business Rules
 
 - Each operator must be assigned to exactly one machine
-- A machine can have only one operator assigned
+- A machine can have multiple operators assigned
 - Production norms apply globally to all machines
 - Only manager doesn't have machine assignment
 - Managers are responsible for configuration and announcements
